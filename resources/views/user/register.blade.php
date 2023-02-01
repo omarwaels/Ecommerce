@@ -60,20 +60,21 @@
             <h1 class="user__title">Sign-up form</h1>
         </header>
 
-        <form class="form">
+        <form class="form" action="{{url('login')}}" method="POST">
+            @csrf
             <div class="form__group">
-                <input type="text" placeholder="Username" class="form__input" />
+                <input type="text" name="name" placeholder="Username" class="form__input" />
             </div>
 
             <div class="form__group">
-                <input type="email" placeholder="Email" class="form__input" />
+                <input type="email" name="email" placeholder="Email" class="form__input" />
             </div>
 
             <div class="form__group">
-                <input type="password" placeholder="Password" class="form__input" />
+                <input type="password" name="password" placeholder="Password" class="form__input" />
             </div>
 
-            <button class="btn" type="button">Register</button>
+            <button class="btn" type="submit" style="background-color: #E5E0FF">Register</button>
         </form>
     </div>
     <script src={{url('js/register.js')}}></script>
