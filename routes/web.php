@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\user;
+use App\Http\Controllers\products;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,12 +23,27 @@ Route::get('/login', function () {
     return view('user\login');
 })->name('login');
 Route::get('/home',function () {
-    return view('user\login');
+    return view('products\home');
 });
+Route::get('user/profile',function () {
+    return view('user\profile');
+});
+Route::get('products',function () {
+    return view('products\home');
+});
+
+Route::get('/products/product',[products::class , "prodInfo"]);
 Route::post('/home',[user::class , "logInReq"]);
+
+Route::get('/dashboard',[user::class , "tableOfUsers"]);
+
 
 
 Route::post('/login', [user::class , "addUser"])->name('login');
+Route::get('/logout', [user::class , "logout"]);
+Route::get('/RankUp', [user::class , "RankUp"]);
+Route::get('/RankDown', [user::class , "RankDown"]);
+Route::get('/Remove', [user::class , "Remove"]);
 Route::get('/register', function () {
     return view('user\register');
 })->name('register');
