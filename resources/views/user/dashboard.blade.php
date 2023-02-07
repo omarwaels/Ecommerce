@@ -28,6 +28,7 @@ if (session_status() === PHP_SESSION_NONE) {
     @if(!isset($_SESSION["user"]))
     <h1>redirect</h1>
     <script>window.location = "/login";</script>
+
     @else
     <div>
         <a href={{url('home')}} ><i style="font-size: 20px ; margin: 20px" class="fa-solid fa-arrow-left">&nbsp;&nbsp;&nbsp;B A C K</i></a>

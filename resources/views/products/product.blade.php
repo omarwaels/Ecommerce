@@ -3,7 +3,9 @@
 <?php
     use Illuminate\Support\Facades\Http;
     $data = Http::get('https://dummyjson.com/products/'.$id)->json();
-
+    if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 
 
 ?>
@@ -18,6 +20,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
     <style>
         li{
             font-weight: 600;
@@ -25,12 +28,13 @@
     </style>
 </head>
 <body>
-
-</body>
-</html>
-
-
-
+    @if(!isset($_SESSION["user"]))
+    <h1>redirect</h1>
+    <script>window.location = "/login";</script>
+    @endif
+    <div>
+        <a href={{url('home')}} ><i style="font-size: 20px ; margin: 20px" class="fa-solid fa-arrow-left">&nbsp;&nbsp;&nbsp;B A C K</i></a>
+    </div>
 <div class="container mt-4">
     <div class="row">
         <div class="col-4">
@@ -55,5 +59,12 @@
 
     </div>
 </div>
+
+
+
+</body>
+</html>
+
+
 
 

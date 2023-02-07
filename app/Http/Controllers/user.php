@@ -19,6 +19,35 @@ class user extends Controller
         ]);
         return redirect()->to(route('login'));
     }
+
+
+    public function showCart (Request $request){
+        // $users = DB::table("users")->select->all;
+        session_start();
+
+
+        if (isset($request->id)){
+            if(isset($request->remove)){
+
+                $key = array_search($request->id, $_SESSION["cartIds"]);
+                unset($_SESSION["cartIds"][$key]);
+                return view("user\cart" );
+
+            }
+            if (in_array($request->id, $_SESSION["cartIds"])) {
+
+            }else{
+                array_push($_SESSION["cartIds"], $request->id);
+
+            }
+            return view("user\cart" );
+        }else{
+            return view("user\cart" );
+        }
+
+
+        return view("user\cart" );
+    }
     public function RankUP (Request $request){
         // $users = DB::table("users")->select->all;
 
@@ -141,6 +170,7 @@ class user extends Controller
             if(Hash::check($password, $user[0]->userPassword)){
                 session_start();
                 $_SESSION['user'] = $user;
+                $_SESSION["cartIds"]=array();
                 return view("products/home" );
                 // compact('user');
             }

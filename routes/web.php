@@ -36,6 +36,7 @@ Route::get('/products/product',[products::class , "prodInfo"]);
 Route::post('/home',[user::class , "logInReq"]);
 
 Route::get('/dashboard',[user::class , "tableOfUsers"]);
+Route::get('user/cart',[user::class , "showCart"]);
 
 
 
